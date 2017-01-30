@@ -9,7 +9,10 @@ RUN apk add -U git \
     && chmod +x /usr/bin/composer \
     && git clone -b v0.8.3 https://github.com/shaarli/Shaarli.git /shaarli \
     && git clone https://github.com/kalvn/Shaarli-Material.git \
-    && cp -R Shaarli-Material/material /shaarli/tpl/ \
+    && mv Shaarli-Material/material /shaarli/tpl/ \
+    && wget https://github.com/ArthurHoaro/shaarli2twitter/archive/v1.3.0.tar.gz \
+    && tar xzf v1.3.0.tar.gz \
+    && mv shaarli2twitter-1.3.0/shaarli2twitter /shaarli/plugins/ \
     && cd /shaarli && composer update --no-dev \
     && cd /shaarli && chmod +w cache pagecache data tmp \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
