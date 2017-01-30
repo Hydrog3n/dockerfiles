@@ -1,4 +1,4 @@
-![Shaarli Logo](https://github.com/shaarli/Shaarli/blob/master/doc/images/doc-logo.png)
+![Shaarli Logo](https://i.goopics.net/krkJ.png)
 
 ## Description 
 
