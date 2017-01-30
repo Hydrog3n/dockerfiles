@@ -14,3 +14,6 @@ Do you want to share the links you discover? Shaarli is a minimalist delicious c
 ## Ports
 * 8080
 
+## Theme material design by [kalvn](https://github.com/kalvn/Shaarli-Material)
+
+You need to edit config.json.php file and edit raintpl_tpl param with `"tpl\/material\/"`
