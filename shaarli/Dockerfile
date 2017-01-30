@@ -8,10 +8,8 @@ RUN apk add -U git \
     && mv /tmp/composer.phar /usr/bin/composer \
     && chmod +x /usr/bin/composer \
     && git clone -b v0.8.3 https://github.com/shaarli/Shaarli.git /shaarli \
-    && wget https://github.com/kalvn/Shaarli-Material/archive/v0.8.2.tar.gz \
-    && tar xvzf v0.8.2.tar.gz \
-    && cp -R Shaarli-Material-0.8.2/material /shaarli/tpl/ \
-    && ls /shaarli/tpl \
+    && git clone https://github.com/kalvn/Shaarli-Material.git \
+    && cp -R Shaarli-Material/material /shaarli/tpl/ \
     && cd /shaarli && composer update --no-dev \
     && cd /shaarli && chmod +w cache pagecache data tmp \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
