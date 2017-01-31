@@ -1,21 +1,26 @@
 FROM xataz/nginx-php
 
-ARG VERSION=v0.8.3
+MAINTAINER hydrog3n <contact@loicvaille.ovh>
+
+ARG VERSION_SHAARLI=v0.8.3
+ARG VERSION_MATERIAL=v0.8.3
+ARG VERSION_SHAARLI2TWITTER=v1.3.0
 
 RUN apk add -U git \
     && cd /tmp \
     && curl -s http://getcomposer.org/installer | php \
     && mv /tmp/composer.phar /usr/bin/composer \
     && chmod +x /usr/bin/composer \
-    && git clone -b v0.8.3 https://github.com/shaarli/Shaarli.git /shaarli \
+    && git clone -b ${VERSION_SHAARLI} https://github.com/shaarli/Shaarli.git /shaarli \
     && git clone https://github.com/kalvn/Shaarli-Material.git \
     && mv Shaarli-Material/material /shaarli/tpl/ \
-    && wget https://github.com/ArthurHoaro/shaarli2twitter/archive/v1.3.0.tar.gz \
-    && tar xzf v1.3.0.tar.gz \
+    && wget https://github.com/ArthurHoaro/shaarli2twitter/archive/${VERSION_SHAARLI2TWITTER}.tar.gz \
+    && tar xzf ${VERSION_SHAARLI2TWITTER}.tar.gz \
     && mv shaarli2twitter-1.3.0/shaarli2twitter /shaarli/plugins/ \
     && cd /shaarli && composer update --no-dev \
     && cd /shaarli && chmod +w cache pagecache data tmp \
-    && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
+    && apk del git \
+    && rm -rf /tmp/* /var/cache/apk/* /usr/src/* /usr/bin/composer
 
 COPY nginx/sites-enabled/shaarli.conf /nginx/sites-enabled/
 
@@ -25,7 +30,7 @@ COPY startup /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/startup
 
-VOLUME /shaarli/data /shaarli/tpl
+VOLUME /shaarli/data /shaarli/tpl /shaarli/plugins
 
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]
