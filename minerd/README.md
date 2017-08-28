@@ -1,4 +1,4 @@
-# docker_minerd
+# Minerd Docker for Darkcoin, Dashcoin
 
 ## Description:
 
@@ -15,7 +15,7 @@ It is based on [darkcoin cpuminer](https://github.com/elmad/darkcoin-cpuminer-1.
 ## Run:
 Easy:
 
-``$ docker run -d --name minerd -e url=<stratum+tcp://urlpool> -e port=<portofpool> -e worker_name=<pseudo.name> -e worker_password=<workerpassword>  minerd``
+``$ docker run -d --name minerd -e algo=<X11|scrypt|sha256d> -e url=<stratum+tcp://urlpool> -e port=<portofpool> -e worker_name=<pseudo.name> -e worker_password=<workerpassword>  minerd``
 
 ## Donations:
 

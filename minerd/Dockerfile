@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM debian:stretch-slim
 
 MAINTAINER Hydrog3n <contact@loicvaille.ovh>
 
@@ -6,10 +6,7 @@ MAINTAINER Hydrog3n <contact@loicvaille.ovh>
 RUN apt-get update
 
 # install packages
-RUN apt-get install -y git libcurl4-openssl-dev libjansson-dev automake gcc build-essential binutils
-
-# create directory worker
-RUN mkdir -p /opt/minerd
+RUN apt-get install -y git build-essential autoconf libcurl4-openssl-dev
 
 # clone minerd repository
 RUN cd /tmp \
@@ -18,11 +15,18 @@ RUN cd /tmp \
     && chmod +x autogen.sh \
     && ./autogen.sh \
     && ./configure CFLAGS="-O3 -march=native" \
-    && make && make install
-
+    && make && make install \
+    && apt-get purge -y git cmake autoconf \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old
 
 # run minerd
 COPY entrypoint.sh /
+
+RUN mkdir /config
+
+VOLUME /config
 
 RUN ["chmod", "+x", "/entrypoint.sh"]
 ENTRYPOINT ["./entrypoint.sh"]
