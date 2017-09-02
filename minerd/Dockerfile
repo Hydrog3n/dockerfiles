@@ -6,10 +6,8 @@ MAINTAINER Hydrog3n <contact@loicvaille.ovh>
 RUN apt-get update
 
 # install packages
-RUN apt-get install -y git build-essential autoconf libcurl4-openssl-dev
-
-# clone minerd repository
-RUN cd /tmp \
+RUN apt-get install -y git build-essential autoconf libcurl4-openssl-dev \
+    && cd /tmp \
     && git clone https://github.com/elmad/darkcoin-cpuminer-1.3-avx-aes.git \
     && cd darkcoin-cpuminer-1.3-avx-aes \
     && chmod +x autogen.sh \
