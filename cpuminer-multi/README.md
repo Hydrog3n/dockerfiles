@@ -9,13 +9,13 @@ It is based on [pooler's cpuminer](https://github.com/pooler/cpuminer).
 
 **To build docker image it's easy.**  
 ``$ git clone https://github.com/hydrog3n/dockerfiles.git``  
-``$ cd dockerfiles/cpuminer``  
-``$ docker build -t cpuminer .``
+``$ cd dockerfiles/cpuminer-multi``  
+``$ docker build -t cpuminer-multi .``
 
 ## Run:
 Easy:
 
-``$ docker run -d --name cpuminer -e algo=<X11|scrypt|sha256d> -e url=<stratum+tcp://urlpool> -e port=<portofpool> -e worker_name=<pseudo.name> -e worker_password=<workerpassword>  hydrog3n/cpuminer``
+``$ docker run -d --name cpuminer -e algo=<X11|scrypt|sha256d> -e url=<stratum+tcp://urlpool> -e port=<portofpool> -e worker_name=<pseudo.name> -e worker_password=<workerpassword>  hydrog3n/cpuminer-multi``
 
 ## Donations:
 
