@@ -9,7 +9,6 @@ export THREAT
 
 ALGO=${ALGO:-scrypt}
 
-THREAT=${THREAT:""}
 
 if [ -z "$URL" ]; then
   echo "[ERROR] Url for the pool must be set !"
@@ -31,11 +30,20 @@ if [ -z "$PASSWORD" ]; then
   exit 1
 fi
 
+if [ ! -z "$THREAD" ]; then 
+  THREADSTRING="-t $THREAD"
+else
+  THREADSTRING=""
+fi
+
 CONFIG=""
+
+echo $THREAD
+echo $THREADSTRING
 
 if [ -e /config/config.json ];  then
     /usr/local/bin/cpuminer -c /config/config.json
 else 
-     /usr/local/bin/cpuminer -a $ALGO -o $URL:$PORT --userpass=$USERNAME:$PASSWORD
+     /usr/local/bin/cpuminer -a $ALGO -o $URL:$PORT --userpass=$USERNAME:$PASSWORD $THREADSTRING
 fi
 
