@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd /matterwiki
+
+sed -i 's/thisisasecretkeyforjwtauth/${AUTHSECRET}/g' ./config.js
+
+chown -R ${UID}:${GID} /matterwiki
+
+if [ $# == 0 ]; then
+    exec su-exec ${UID}:${GID} /sbin/tini -- npm start
+else
+    exec su-exec ${UID}:${GID} /sbin/tini -- "$@"
+fi
