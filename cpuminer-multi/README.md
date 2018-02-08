@@ -3,7 +3,7 @@
 ## Description:
 
 This docker container will help you to quickly launch cpuminer instance.
-It is based on [pooler's cpuminer](https://github.com/pooler/cpuminer). 
+It is based on [tpruvot's cpuminer](https://github.com/tpruvot/cpuminer-multi). 
 
 ## Build:
 
@@ -12,10 +12,19 @@ It is based on [pooler's cpuminer](https://github.com/pooler/cpuminer).
 ``$ cd dockerfiles/cpuminer-multi``  
 ``$ docker build -t cpuminer-multi .``
 
+## Environments
+
+* URL (Required) : Url of the Pool
+* PORT (Required) : Port of the Pool
+* USERNAME (Required) : Your worker username
+* PASSWORD (Required) : Your worker password
+* THREAD : Number of thread you want to use (Default: cpuminer detection)
+* ALGO : This is the type of algorythm you want to use (Default: scrypt) List [here](https://github.com/tpruvot/cpuminer-multi#algorithms)
+
 ## Run:
 Easy:
 
-``$ docker run -d --name cpuminer -e algo=<X11|scrypt|sha256d> -e url=<stratum+tcp://urlpool> -e port=<portofpool> -e worker_name=<pseudo.name> -e worker_password=<workerpassword>  hydrog3n/cpuminer-multi``
+``$ docker run -d --name cpuminer -e ALGO=<X11|scrypt|sha256d> -e URL=<stratum+tcp://urlpool> -e PORT=<portofpool> -e USERNAME=<pseudo.name> -e PASSWORD=<workerpassword> hydrog3n/cpuminer-multi``
 
 ## Donations:
 

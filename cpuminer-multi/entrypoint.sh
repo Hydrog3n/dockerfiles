@@ -5,7 +5,7 @@ export URL
 export PORT
 export USERNAME
 export PASSWORD
-export THREAT
+export THREAD
 
 ALGO=${ALGO:-scrypt}
 
@@ -38,8 +38,6 @@ fi
 
 CONFIG=""
 
-echo $THREAD
-echo $THREADSTRING
 
 if [ -e /config/config.json ];  then
     nice -10 /usr/local/bin/cpuminer -c /config/config.json
