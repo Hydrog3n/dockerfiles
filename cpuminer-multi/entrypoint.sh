@@ -42,8 +42,8 @@ echo $THREAD
 echo $THREADSTRING
 
 if [ -e /config/config.json ];  then
-    /usr/local/bin/cpuminer -c /config/config.json
+    nice -10 /usr/local/bin/cpuminer -c /config/config.json
 else 
-     /usr/local/bin/cpuminer -a $ALGO -o $URL:$PORT --userpass=$USERNAME:$PASSWORD $THREADSTRING
+     nice -10 /usr/local/bin/cpuminer -a $ALGO -o $URL:$PORT --userpass=$USERNAME:$PASSWORD $THREADSTRING
 fi
 
