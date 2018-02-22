@@ -19,7 +19,7 @@ RUN cd /tmp \
     && mv shaarli2twitter-${VERSION_SHAARLI2TWITTER}/shaarli2twitter /shaarli/plugins/ \
     && rm -rf v${VERSION_SHAARLI2TWITTER}.tar.gz shaarli2twitter-${VERSION_SHAARLI2TWITTER} \
     && cd /shaarli && chmod +w cache pagecache data tmp \
-    && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
+    && apk del --quiet --no-cache --progress --purge && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
 
 COPY nginx/sites-enabled/shaarli.conf /nginx/sites-enabled/
 
