@@ -40,8 +40,8 @@ CONFIG=""
 
 
 if [ -e /config/config.json ];  then
-    nice -10 /usr/local/bin/cpuminer -c /config/config.json
+    /usr/local/bin/cpuminer -c /config/config.json
 else 
-     nice -10 /usr/local/bin/cpuminer -a $ALGO -o $URL:$PORT --userpass=$USERNAME:$PASSWORD $THREADSTRING
+    /usr/local/bin/cpuminer -a $ALGO -o $URL:$PORT --userpass=$USERNAME:$PASSWORD $THREADSTRING
 fi
 
