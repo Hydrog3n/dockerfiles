@@ -15,7 +15,7 @@ It is based on [darkcoin cpuminer](https://github.com/elmad/darkcoin-cpuminer-1.
 ## Run:
 Easy:
 
-``$ docker run -d --name minerd -e algo=<X11|scrypt|sha256d> -e url=<stratum+tcp://urlpool> -e port=<portofpool> -e worker_name=<pseudo.name> -e worker_password=<workerpassword>  hydrog3n/minerd``
+``$ docker run -d --name minerd -e ALGO=<X11|scrypt|sha256d> -e URL=<stratum+tcp://urlpool> -e PORT=<portofpool> -e USERNAME=<pseudo.name> -e PASSWORD=<workerpassword>  hydrog3n/minerd``
 
 ## Donations:
 
