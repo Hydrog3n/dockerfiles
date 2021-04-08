@@ -15,12 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         chromium \
         chromium-driver && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN pip3 install pipenv PyGObject
-
-RUN cd && pwd
-RUN  git clone https://github.com/Hari-Nagarajan/fairgame
+    rm -rf /var/lib/apt/lists/* \
+    && pip3 install pipenv PyGObject \
+    && git clone https://github.com/Hari-Nagarajan/fairgame
 
 WORKDIR /fairgame
 
@@ -28,6 +25,7 @@ RUN pipenv lock --requirements > requirements.txt && \
     pip install -r requirements.txt --user
 
 RUN CHROMIUM_VERSION=$(apt list chromium | awk 'NR==2 { print $2 }' | awk -F'.' '{ printf "%d.%d.%d", $1, $2, $3 }'); pip install chromedriver-py==$CHROMIUM_VERSION.*
+
 VOLUME [ "/fairgame/config" ]
 
 ENTRYPOINT [ "python3", "app.py" ]
