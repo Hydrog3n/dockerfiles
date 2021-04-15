@@ -8,7 +8,7 @@ Same for the `amazon_config.json`
 
 
 ```
-docker run  -v `pwd`/config/amazon_config.json:/fairgame/config/amazon_config.json -v `pwd`/config/amazon_credentials.json:/fairgame/config/amazon_credentials.json -it hydrog3n/fairgame amazon --headless
+docker run  -v `pwd`/config/amazon_config.json:/fairgame/config/amazon_config.json -v `pwd`/config/amazon_credentials.json:/fairgame/config/amazon_credentials.json -it hydrog3n/fairgame amazon --headless --p yourpassword
 ```
 
 Entry your credentials or your secret
