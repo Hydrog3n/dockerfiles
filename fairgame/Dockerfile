@@ -1,7 +1,10 @@
 FROM python:3.8.8
 ARG DEBIAN_FRONTEND=noninteractive
 ENV PATH="/root/.local/bin:${PATH}"
+ARG GIT_LAST_RELEASE="0.6.9"
+ENV BRANCH=$GIT_LAST_RELEASE
 
+RUN echo ${BRANCH}
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-pip \
         python3-setuptools \
@@ -17,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* \
     && pip3 install pipenv PyGObject \
-    && git clone https://github.com/Hari-Nagarajan/fairgame
+    && git clone -b ${BRANCH} https://github.com/Hari-Nagarajan/fairgame
 
 WORKDIR /fairgame
 
